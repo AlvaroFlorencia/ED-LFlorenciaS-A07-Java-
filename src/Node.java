@@ -8,11 +8,11 @@
  *
  * @author Dell
  */
-public class Node {
-    int data;  //Varable
+public class Node<T> { //With "T" the data will be of any type
+    T data;  //Varable
     Node next;  
     
-    public Node(int d){
+    public Node(T d){
         this.data=d; //initializing the node
     }
 }

@@ -8,7 +8,7 @@
  *
  * @author Dell
  */
-public class MyList {
+public class MyList<T> {
     Node first;
     Node last;
     Node pointer; //Variables
@@ -19,7 +19,7 @@ public class MyList {
         pointer=null;
         
     }
-    MyList(int data){ //Constructor with parameter 
+    MyList(T data){ //Constructor with parameter 
         Node node =new Node(data);
         first=node; //Pointing node 
         
@@ -38,7 +38,7 @@ public class MyList {
     }
    //Methods  //Is it Empty?
     //Insert the first
-    public void insertFirst(int d){
+    public void insertFirst(T d){
         Node node=new Node(d);
         if(isEmpty()){
             
@@ -57,7 +57,7 @@ public class MyList {
         
     }
     //Insert the final
-    public void insertLast(int d){
+    public void insertLast(T d){
         Node node= new Node(d);
         if(isEmpty()){
             
@@ -107,6 +107,61 @@ public class MyList {
             }
         }
     }
-  
     
+    
+    //Eliminar nodo
+    public boolean deleteNoDe(T n){
+       Node p=fetchBack(n);
+       if(p!=null){ //If not search the item
+        if(p.data==n){  //If was the first or the unic item in the list
+       deleteFirst();
+       }else{ //If is in the list
+       p.next=p.next.next;            
 }
+       return true;
+       }
+    return false;
+    
+    }
+    public Node fetch(T n){
+        if(!isEmpty()){ //If not is empty
+   
+                if(first.data==n){    //If the firs data is the item that i searched             
+                return first; //Return the first
+            }else{
+                    Node point = fetchBack(n); //New node p to search the back item
+                                        if(point.data!=n){ ///If the data is different to n, return the next
+                        return point.next;
+                    }
+                }
+    
+    }
+            return null;
+    }
+    public Node fetchBack(T n){
+  
+        pointer=first;
+        if(!isEmpty()){
+            if(first==last){ //If has one element
+                if(first.data==n){//Is the item I am looking for?
+                    return first;//Returns itself
+                }else
+                { return null;} //If not return null
+            }else{
+          if(first.data==n){ //If the element is the first
+              return first;
+          }else{  //If not pointers will be first
+              pointer=first;
+          
+                while(pointer.next!=null){ //while does not reach the end
+                          if(pointer.next.data==n){   //if the pointer is the item searched ,return pointer
+                             
+                              return pointer; 
+                          }
+                          pointer=pointer.next; //Advance the pointer
+                      } 
+            }}}
+            return null;
+           
+        }
+    }
